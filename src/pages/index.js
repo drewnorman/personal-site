@@ -4,7 +4,7 @@ import {
   faGithub, faGitlab, faBitbucket,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
-import BasicLayout from '../components/BasicLayout';
+import BaseLayout from '../layouts/BaseLayout';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -81,8 +81,8 @@ const Main = styled.main`
 `;
 
 const Home = () => (
-  <BasicLayout
-    title="Drew Norman"
+  <BaseLayout
+    title="Drew Norman | Full Stack Developer"
     description="Hi, I'm Drew Norman, a full stack developer with a knack for delivering engaging, responsive, and scalable web applications."
   >
     <>
@@ -202,23 +202,23 @@ const Home = () => (
             }}
           >
             <a
-                href="https://github.com/drewnorman/"
-                target="_blank"
-                rel="noopener noreferrer"
+              href="https://github.com/drewnorman/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={faGithub} />
             </a>
             <a
-                href="https://gitlab.com/drewnorman/"
-                target="_blank"
-                rel="noopener noreferrer"
+              href="https://gitlab.com/drewnorman/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={faGitlab} />
             </a>
             <a
-                href="https://bitbucket.com/drewnorman/"
-                target="_blank"
-                rel="noopener noreferrer"
+              href="https://bitbucket.com/drewnorman/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={faBitbucket} />
             </a>
@@ -226,7 +226,7 @@ const Home = () => (
         </Main>
       </motion.div>
     </>
-  </BasicLayout>
+  </BaseLayout>
 );
 
 export default Home;
