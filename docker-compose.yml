@@ -18,6 +18,15 @@ services:
       - traefik.frontend.rule=Host:personal-site.docker.localhost
       - traefik.docker.network=proxy
       - traefik.port=3000
+  personal-site-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: personal-site-test
+    volumes:
+      - .:/app
+    networks:
+      - internal
   traefik:
     image: traefik:alpine
     container_name: traefik
