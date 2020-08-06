@@ -19,7 +19,8 @@ steps:
       'deploy', '$REPO_NAME-$_ENV-$SHORT_SHA',
       '--image', 'gcr.io/$PROJECT_ID/$REPO_NAME-$_ENV-$TAG_NAME',
       '--region', '$_REGION',
-      '--platform', 'managed'
+      '--platform', 'managed',
+      '--port', '80'
     ]
 images:
   - gcr.io/$PROJECT_ID/$REPO_NAME-$_ENV-$TAG_NAME
