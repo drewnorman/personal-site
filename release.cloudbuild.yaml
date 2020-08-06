@@ -16,7 +16,7 @@ steps:
     entrypoint: gcloud
     args: [
       'run',
-      'deploy', '$REPO_NAME-release-$TAG_NAME',
+      'deploy', '$REPO_NAME-$_ENV-$SHORT_SHA',
       '--image', 'gcr.io/$PROJECT_ID/$REPO_NAME-$_ENV-$TAG_NAME',
       '--region', '$_REGION',
       '--platform', 'managed'
