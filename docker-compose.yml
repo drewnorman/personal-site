@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+  personal-site:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: personal-site
+    volumes:
+      - .:/app
+    restart: always
+    networks:
+      - proxy
+      - internal
+    labels:
+      - traefik.enable=true
+      - traefik.backend=personal-site
+      - traefik.frontend.rule=Host:personal-site.docker.localhost
+      - traefik.docker.network=proxy
+      - traefik.port=3000
+  personal-site-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: personal-site-test
+    volumes:
+      - .:/app
+    networks:
+      - internal
+  traefik:
+    image: traefik:alpine
+    container_name: traefik
+    networks:
+      - proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD/traefik.toml:/traefik.toml
+      - $PWD/acme.json:/acme.json
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:monitor.docker.localhost
+      - traefik.port=8080
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
