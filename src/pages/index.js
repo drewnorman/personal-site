@@ -25,49 +25,74 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
       height: 100%;
+      margin: 0;
       color: white;
       background: ${({ theme }) => theme.colors.black};
     }
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+`;
+
 const Main = styled.main`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
-  min-width: 90vw;
+  max-height: 100vh;
+  width: 100%;
+  padding: 0 1rem;
   @media screen and ${({ theme }) => theme.breakpoints.large} {
     min-width: 40vw;
   }
   .name {
-    font-size: 3.6rem;
+    font-size: 3rem;
+    @media screen and ${({ theme }) => theme.breakpoints.large} {
+      font-size: 3.4rem;
+    }
     margin: 0;
     white-space: nowrap;
   }
   .career {
-    margin: 0.5rem 0;
+    margin: 0;
     font-size: 1.6rem;
     letter-spacing: 2px;
     font-weight: 400;
     white-space: nowrap;
   }
   .details {
-    margin: 3rem 0 0;
-    font-size: 1.2rem;
+    margin: 2rem 0 0;
+    font-size: 1.4rem;
     white-space: pre-wrap;
     .detail {
-      margin: 1rem 0;
+      margin: 0.6rem 0;
+      @media screen and ${({ theme }) => theme.breakpoints.medium} {
+        margin: 1rem 0;
+      }
+    }
+    @media screen and ${({ theme }) => theme.breakpoints.medium} {
+      font-size: 1.2rem;
     }
   }
   .pic {
-    width:  280px;
-    height: 280px;
-    margin: 0 0 2rem;
+    max-width: 220px;
+    width: 100%;
+    margin: 0 0 1rem;
+    @media screen and ${({ theme }) => theme.breakpoints.small} {
+      max-width: 260px;
+    }
+    @media screen and ${({ theme }) => theme.breakpoints.medium} {
+      max-width: 300px;
+    }
+    @media screen and ${({ theme }) => theme.breakpoints.xlarge} {
+      max-width: 340px;
+    }
   }
   .code-links {
-    padding-top: 2rem;
+    padding-top: 1rem;
     a {
       opacity: 0.8;
       &:hover {
@@ -96,134 +121,136 @@ const Home = () => (
           visible: { opacity: 1 },
         }}
       >
-        <Main>
-          <motion.img
-            className="pic"
-            src="/images/me-and-mr-kitty.png"
-            alt="Me and Mr. Kitty"
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.4, delay: 0.2 }}
-            variants={{
-              hidden: { opacity: 0, scale: 0.9 },
-              visible: { opacity: 1, scale: 1 },
-            }}
-          />
-          <motion.div
-            style="hidden"
-            animate="visible"
-            transition={{ duration: 1.6, delay: 0.4 }}
-            variants={{
-              hidden: { opacity: 0, y: -10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <h1 className="name">Drew Norman</h1>
-            <h4 className="career">Full Stack Developer</h4>
-          </motion.div>
-          <motion.div
-            className="details"
-            style="hidden"
-            animate="visible"
-            transition={{ duration: 1.6, delay: 0.6 }}
-            variants={{
-              hidden: { opacity: 0, x: -40 },
-              visible: { opacity: 1, x: 0 },
-            }}
-          >
-            <p className="detail">
-              I&apos;m into&nbsp;
-              <a
-                href="https://www.rust-lang.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                memory-safe languages
-              </a>
-              &nbsp;and&nbsp;
-              <a
-                href="https://landscape.cncf.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                cloud-native technologies
-              </a>
-              .
-            </p>
-            <p className="detail">
-              Sometimes I&nbsp;
-              <a
-                href="https://www.denver.org/listing/denver-skatepark/6824/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                skateboard
-              </a>
-              &nbsp;or watch&nbsp;
-              <a
-                href="https://www.imdb.com/title/tt0078748/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                scary movies
-              </a>
-              &nbsp;and other times I just pet my cat.
-            </p>
-            <p className="detail">
-              I currently work at&nbsp;
-              <a
-                href="https://foxfuelcreative.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Fox Fuel Creative
-              </a>
-              .
-            </p>
-            <p className="detail">
-              Feel free to check out&nbsp;
-              <a
-                href="/documents/Antony Drew Norman - Resume.pdf"
-                target="_blank"
-              >
-                my resume
-              </a>
-              &nbsp;or see my recent activity below.
-            </p>
-          </motion.div>
-          <motion.div
-            className="code-links"
-            style="hidden"
-            animate="visible"
-            transition={{ duration: 1.6, delay: 1 }}
-            variants={{
-              hidden: { opacity: 0, y: -40 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <a
-              href="https://github.com/drewnorman/"
-              target="_blank"
-              rel="noopener noreferrer"
+        <Container>
+          <Main>
+            <motion.img
+              className="pic"
+              src="/images/me-and-mr-kitty.png"
+              alt="Me and Mr. Kitty"
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1 },
+              }}
+            />
+            <motion.div
+              style="hidden"
+              animate="visible"
+              transition={{ duration: 1.6, delay: 0.4 }}
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a
-              href="https://gitlab.com/drewnorman/"
-              target="_blank"
-              rel="noopener noreferrer"
+              <h1 className="name">Drew Norman</h1>
+              <h4 className="career">Full Stack Developer</h4>
+            </motion.div>
+            <motion.div
+              className="details"
+              style="hidden"
+              animate="visible"
+              transition={{ duration: 1.6, delay: 0.6 }}
+              variants={{
+                hidden: { opacity: 0, x: -40 },
+                visible: { opacity: 1, x: 0 },
+              }}
             >
-              <FontAwesomeIcon icon={faGitlab} />
-            </a>
-            <a
-              href="https://bitbucket.com/drewnorman/"
-              target="_blank"
-              rel="noopener noreferrer"
+              <p className="detail">
+                I&apos;m into&nbsp;
+                <a
+                  href="https://www.rust-lang.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  memory-safe languages
+                </a>
+                &nbsp;and&nbsp;
+                <a
+                  href="https://landscape.cncf.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  cloud-native technologies
+                </a>
+                .
+              </p>
+              <p className="detail">
+                Sometimes I&nbsp;
+                <a
+                  href="https://www.denver.org/listing/denver-skatepark/6824/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  skateboard
+                </a>
+                &nbsp;or watch&nbsp;
+                <a
+                  href="https://www.imdb.com/title/tt0078748/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  scary movies
+                </a>
+                &nbsp;and other times I just pet my cat.
+              </p>
+              <p className="detail">
+                I currently work at&nbsp;
+                <a
+                  href="https://foxfuelcreative.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  FoxFuel Creative
+                </a>
+                .
+              </p>
+              <p className="detail">
+                Feel free to check out&nbsp;
+                <a
+                  href="/documents/Antony Drew Norman - Resume.pdf"
+                  target="_blank"
+                >
+                  my resume
+                </a>
+                &nbsp;or see my recent activity below.
+              </p>
+            </motion.div>
+            <motion.div
+              className="code-links"
+              style="hidden"
+              animate="visible"
+              transition={{ duration: 1.6, delay: 1 }}
+              variants={{
+                hidden: { opacity: 0, y: -40 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
-              <FontAwesomeIcon icon={faBitbucket} />
-            </a>
-          </motion.div>
-        </Main>
+              <a
+                href="https://github.com/drewnorman/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a
+                href="https://gitlab.com/drewnorman/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGitlab} />
+              </a>
+              <a
+                href="https://bitbucket.com/drewnorman/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faBitbucket} />
+              </a>
+            </motion.div>
+          </Main>
+        </Container>
       </motion.div>
     </>
   </BaseLayout>

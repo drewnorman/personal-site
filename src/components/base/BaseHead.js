@@ -6,6 +6,7 @@ import site from '../../constants/site';
 const BaseHead = ({ title, description }) => (
   <Head>
     <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <SEO
       title={title}
       description={description}
