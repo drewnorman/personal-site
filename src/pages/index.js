@@ -183,8 +183,8 @@ const Home = () => (
             <p className="detail">
               Feel free to check out&nbsp;
               <a
-                href="/documents/drew-norman-resume.pdf"
-                download
+                href="/documents/Antony Drew Norman - Resume.pdf"
+                target="_blank"
               >
                 my resume
               </a>
