@@ -1,4 +1,8 @@
-import { render, waitFor } from '@testing-library/react';
+/**
+ * @jest-environment jsdom
+ */
+
+import { render } from '@testing-library/react';
 import { expect, it } from '@jest/globals';
 import SEO from './SEO';
 
