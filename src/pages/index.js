@@ -134,15 +134,15 @@ const Home = () => (
             <p className="detail">
               I&apos;m into&nbsp;
               <a
-                href="https://cloud.google.com/cloud-build"
+                href="https://www.rust-lang.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                continuous integration
+                memory-safe languages
               </a>
               &nbsp;and&nbsp;
               <a
-                href="https://kubernetes.io/"
+                href="https://landscape.cncf.io/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -153,7 +153,7 @@ const Home = () => (
             <p className="detail">
               Sometimes I&nbsp;
               <a
-                href="https://www.nashville.gov/Parks-and-Recreation/Athletics/Two-Rivers-Skate-Park.aspx"
+                href="https://www.denver.org/listing/denver-skatepark/6824/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
