@@ -80,7 +80,9 @@ const Main = styled.main`
   .pic {
     max-width: 220px;
     width: 100%;
-    margin: 0 0 1rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
     @media screen and ${({ theme }) => theme.breakpoints.small} {
       max-width: 260px;
     }
@@ -89,6 +91,9 @@ const Main = styled.main`
     }
     @media screen and ${({ theme }) => theme.breakpoints.xlarge} {
       max-width: 340px;
+    }
+    img {
+      width: 100%;
     }
   }
   .code-links {
@@ -123,10 +128,7 @@ const Home = () => (
       >
         <Container>
           <Main>
-            <motion.img
-              className="pic"
-              src="/images/me-and-mr-kitty.png"
-              alt="Me and Mr. Kitty"
+            <motion.div
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.4, delay: 0.2 }}
@@ -134,7 +136,14 @@ const Home = () => (
                 hidden: { opacity: 0, scale: 0.9 },
                 visible: { opacity: 1, scale: 1 },
               }}
-            />
+            >
+              <div className="pic">
+                <img
+                  src="/images/drew.jpg"
+                  alt="Drew Norman"
+                />
+              </div>
+            </motion.div>
             <motion.div
               style="hidden"
               animate="visible"
