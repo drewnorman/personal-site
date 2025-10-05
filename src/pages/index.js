@@ -113,7 +113,7 @@ const Main = styled.main`
 const Home = () => (
   <BaseLayout
     title="Drew Norman | Full Stack Developer"
-    description="Hi, I'm Drew Norman, a full stack developer with a knack for delivering engaging, responsive, and scalable web applications."
+    description="I'm Drew Norman, a full stack developer specializing in functional programming and cloud-native technologies."
   >
     <>
       <GlobalStyle />
@@ -169,11 +169,11 @@ const Home = () => (
               <p className="detail">
                 I&apos;m into&nbsp;
                 <a
-                  href="https://www.rust-lang.org/"
+                  href="https://en.wikipedia.org/wiki/Functional_programming"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  memory-safe languages
+                  functional programming
                 </a>
                 &nbsp;and&nbsp;
                 <a
@@ -186,15 +186,15 @@ const Home = () => (
                 .
               </p>
               <p className="detail">
-                Sometimes I&nbsp;
+                I like growing&nbsp;
                 <a
-                  href="https://www.denver.org/listing/denver-skatepark/6824/"
+                  href="https://en.wikipedia.org/wiki/Hottest_chili_pepper"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  skateboard
+                  super hots
                 </a>
-                &nbsp;or watch&nbsp;
+                , watching&nbsp;
                 <a
                   href="https://www.imdb.com/title/tt0078748/"
                   target="_blank"
@@ -202,7 +202,7 @@ const Home = () => (
                 >
                   scary movies
                 </a>
-                &nbsp;and other times I just pet my cat.
+                , and chilling with my cats.
               </p>
               <p className="detail">
                 I currently work at&nbsp;
@@ -218,7 +218,7 @@ const Home = () => (
               <p className="detail">
                 Feel free to check out&nbsp;
                 <a
-                  href="/documents/Antony Drew Norman - Resume.pdf"
+                  href="/documents/Drew Norman - Resume.pdf"
                   target="_blank"
                 >
                   my resume
