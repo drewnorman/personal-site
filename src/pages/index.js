@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faGithub, faGitlab, faBitbucket,
+  faGithub, faGitlab,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
 import BaseLayout from '../layouts/BaseLayout';
@@ -249,13 +249,6 @@ const Home = () => (
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faGitlab} />
-              </a>
-              <a
-                href="https://bitbucket.com/drewnorman/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon icon={faBitbucket} />
               </a>
             </motion.div>
           </Main>
