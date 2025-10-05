@@ -81,7 +81,6 @@ const Main = styled.main`
     max-width: 220px;
     width: 100%;
     margin: 0 auto 1rem;
-    border-radius: 50%;
     overflow: hidden;
     @media screen and ${({ theme }) => theme.breakpoints.small} {
       max-width: 260px;
@@ -94,6 +93,7 @@ const Main = styled.main`
     }
     img {
       width: 100%;
+      border-radius: 100%;
     }
   }
   .code-links {
