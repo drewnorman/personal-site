@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faGithub, faGitlab,
+  faGithub, faGitlab, faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
 import BaseLayout from '../layouts/BaseLayout';
@@ -195,7 +195,7 @@ const Home = () => (
               <p className="detail">
                 I like growing&nbsp;
                 <a
-                  href="https://en.wikipedia.org/wiki/Hottest_chili_pepper"
+                  href="/images/ghost-peppers.jpg"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -209,7 +209,11 @@ const Home = () => (
                 >
                   scary movies
                 </a>
-                , and chilling with my cats.
+                , and chilling with&nbsp;
+                <a href="/images/cats.jpg">
+                  my cats
+                </a>
+                .
               </p>
               <p className="detail">
                 I currently work at&nbsp;
@@ -256,6 +260,13 @@ const Home = () => (
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faGitlab} />
+              </a>
+              <a
+                href="https://linkedin.com/in/drew-norman-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </motion.div>
           </Main>
