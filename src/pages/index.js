@@ -18,16 +18,20 @@ const GlobalStyle = createGlobalStyle`
     h4, h5, h6 {
       font-family: ${({ theme }) => theme.fonts.smallHeading};
     }
-    a, a:hover, a:visited, a:active {
+    a {
       font-weight: 800;
-      color: ${({ theme }) => theme.colors.primary};
-      text-decoration: none;
+      color: ${({ theme }) => theme.colors.links};
+      text-decoration-color: transparent;
+      transition: text-decoration-color 0.2s ease-in-out;
+      &:hover {
+        text-decoration-color: ${({ theme }) => theme.colors.links};
+      }
     }
     body {
       height: 100%;
       margin: 0;
-      color: white;
-      background: ${({ theme }) => theme.colors.black};
+      color: ${({ theme }) => theme.colors.text};
+      background: ${({ theme }) => theme.colors.background};
     }
   }
 `;
@@ -92,7 +96,9 @@ const Main = styled.main`
       max-width: 340px;
     }
     img {
+      box-sizing: border-box;
       width: 100%;
+      border: 4px solid ${({ theme }) => theme.colors.text};
       border-radius: 100%;
     }
   }
@@ -100,10 +106,11 @@ const Main = styled.main`
     padding-top: 1rem;
     a {
       opacity: 0.8;
+      transition: opacity 0.2s ease-in-out;
       &:hover {
         opacity: 1;
       }
-      color: white;
+      color: ${({ theme }) => theme.colors.text};
       font-size: 2rem;
       margin: 0 1rem;
     }

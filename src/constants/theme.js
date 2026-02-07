@@ -17,11 +17,12 @@ export default {
     xxlarge: `(min-width: ${ deviceSizes.xxlarge }px)`,
   },
   colors: {
-    primary: '#6a77f2',
-    black: '#0D0D0D',
+    links: '#F9C594',
+    background: '#335C67',
+    text: '#F5F1E3',
   },
   fonts: {
-    largeHeading: "'Staatliches', cursive",
+    largeHeading: "'Staatliches', sans-serif",
     smallHeading: "'Rubik', sans-serif",
     body: "'Heebo', sans-serif",
   },
