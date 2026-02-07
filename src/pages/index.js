@@ -232,7 +232,11 @@ const Home = () => (
                 scary movies
               </a>
               , and chilling with&nbsp;
-              <a href="/images/cats.jpg">
+              <a
+                href="/images/cats.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 my cats
               </a>
               .
