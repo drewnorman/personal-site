@@ -1,0 +1,3 @@
+project_id         = "YOUR_GCP_PROJECT_ID"
+region             = "us-central1"
+cloud_run_sa_email = "cloud-run-sa@YOUR_PROJECT.iam.gserviceaccount.com"

@@ -1,0 +1,5 @@
+project_id         = "YOUR_GCP_PROJECT_ID"
+region             = "us-central1"
+cloud_run_sa_email = "cloud-run-sa@YOUR_PROJECT.iam.gserviceaccount.com"
+cloudflare_zone_id = "YOUR_CLOUDFLARE_ZONE_ID"
+# cloudflare_api_token is set via TF_VAR_cloudflare_api_token env var
