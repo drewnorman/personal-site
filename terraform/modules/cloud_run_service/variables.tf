@@ -26,7 +26,7 @@ variable "min_instances" {
 
 variable "max_instances" {
   type    = number
-  default = 3
+  default = 1
 }
 
 variable "memory" {

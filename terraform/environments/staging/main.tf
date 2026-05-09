@@ -8,7 +8,7 @@ module "cloud_run" {
   service_account_email = var.cloud_run_sa_email
   domain                = "staging.adre.me"
   min_instances         = 0
-  max_instances         = 2
+  max_instances         = 1
   memory                = "512Mi"
 }
 
