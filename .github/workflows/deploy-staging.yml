@@ -2,8 +2,8 @@ name: Deploy — Staging
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v[0-9]*.[0-9]*.[0-9]*-rc.*'
 
 permissions:
   contents: read
@@ -33,15 +33,17 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ${{ env.IMAGE }}:${{ github.sha }} .
-          docker push ${{ env.IMAGE }}:${{ github.sha }}
+          docker build -t ${{ env.IMAGE }}:${{ github.ref_name }} .
+          docker push ${{ env.IMAGE }}:${{ github.ref_name }}
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy personal-site-staging \
-            --image ${{ env.IMAGE }}:${{ github.sha }} \
+            --image ${{ env.IMAGE }}:${{ github.ref_name }} \
             --region ${{ env.REGION }} \
             --platform managed \
             --port 3000 \
+            --min-instances 0 \
+            --max-instances 1 \
             --allow-unauthenticated \
             --service-account cloud-run-sa@${{ env.PROJECT_ID }}.iam.gserviceaccount.com

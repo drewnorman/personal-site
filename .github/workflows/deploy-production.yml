@@ -3,7 +3,7 @@ name: Deploy — Production
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]*.[0-9]*.[0-9]*'
 
 permissions:
   contents: read
@@ -16,6 +16,7 @@ env:
 
 jobs:
   deploy:
+    if: ${{ !contains(github.ref_name, '-rc.') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,5 +44,6 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --port 3000 \
+            --max-instances 1 \
             --allow-unauthenticated \
             --service-account cloud-run-sa@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
