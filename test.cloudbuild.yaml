@@ -7,3 +7,8 @@ steps:
       - '-f'
       - './Dockerfile.test'
       - '.'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'run'
+      - '--rm'
+      - 'test-image'
