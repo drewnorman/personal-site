@@ -57,13 +57,13 @@ resource "google_service_account_iam_member" "github_actions_act_as_run_sa" {
 }
 
 resource "github_actions_secret" "wif_provider" {
-  repository      = var.github_repo
-  secret_name     = "WIF_PROVIDER"
-  value = google_iam_workload_identity_pool_provider.github.name
+  repository  = var.github_repo
+  secret_name = "WIF_PROVIDER"
+  value       = google_iam_workload_identity_pool_provider.github.name
 }
 
 resource "github_actions_secret" "gcp_sa_email" {
-  repository      = var.github_repo
-  secret_name     = "GCP_SA_EMAIL"
-  value = google_service_account.github_actions.email
+  repository  = var.github_repo
+  secret_name = "GCP_SA_EMAIL"
+  value       = google_service_account.github_actions.email
 }

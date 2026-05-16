@@ -1,5 +1,0 @@
-# Copy to backend.hcl and fill in your GCS bucket name.
-# Create the bucket once manually before running tofu init:
-#   gcloud storage buckets create gs://YOUR_BUCKET --project=YOUR_PROJECT --location=us-central1
-bucket = "YOUR_PROJECT-tofu-state"
-prefix = "personal-site/shared"
