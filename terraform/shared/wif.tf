@@ -74,6 +74,12 @@ resource "google_project_iam_member" "github_actions_service_usage_consumer" {
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+resource "google_project_iam_member" "github_actions_service_usage_admin" {
+  project = var.project_id
+  role    = "roles/serviceusage.serviceUsageAdmin"
+  member  = "serviceAccount:${google_service_account.github_actions.email}"
+}
+
 resource "google_service_account_iam_member" "github_actions_act_as_run_sa" {
   service_account_id = google_service_account.cloud_run.name
   role               = "roles/iam.serviceAccountUser"
