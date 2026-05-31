@@ -1,7 +1,11 @@
-output "service_url" {
-  value = module.cloud_run.service_url
+output "firebase_hosting_site_id" {
+  value = google_firebase_hosting_site.staging.site_id
 }
 
-output "domain_mapping_records" {
-  value = module.cloud_run.domain_mapping_records
+output "firebase_hosting_default_url" {
+  value = "https://${google_firebase_hosting_site.staging.site_id}.web.app"
+}
+
+output "firebase_hosting_dns_record" {
+  value = cloudflare_record.staging.hostname
 }

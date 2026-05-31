@@ -7,8 +7,9 @@ variable "region" {
   default = "us-central1"
 }
 
-variable "cloud_run_sa_email" {
-  type = string
+variable "firebase_hosting_site_id" {
+  type        = string
+  description = "Firebase Hosting site ID for production."
 }
 
 variable "cloudflare_api_token" {

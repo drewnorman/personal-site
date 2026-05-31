@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Drew Norman | Full Stack Developer';
+const description = "I'm Drew Norman, a full stack developer specializing in functional programming and cloud-native technologies.";
+
+const icons = {
+  github: {
+    viewBox: '0 0 24 24',
+    path: 'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.405 1.02.006 2.046.139 3.006.405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+  },
+  gitlab: {
+    viewBox: '0 0 24 24',
+    path: 'M23.955 13.587l-1.342-4.135-2.664-8.189a.456.456 0 0 0-.87 0l-2.664 8.189H7.585L4.921 1.263a.456.456 0 0 0-.87 0L1.387 9.452.045 13.587a.924.924 0 0 0 .331 1.03L12 23.054l11.624-8.436a.924.924 0 0 0 .331-1.031',
+  },
+  linkedin: {
+    viewBox: '0 0 24 24',
+    path: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z',
+  },
+};
+
+const codeLinks = [
+  {
+    href: 'https://github.com/drewnorman/',
+    label: 'GitHub',
+    icon: icons.github,
+  },
+  {
+    href: 'https://gitlab.com/drewnorman/',
+    label: 'GitLab',
+    icon: icons.gitlab,
+  },
+  {
+    href: 'https://linkedin.com/in/drew-norman-dev/',
+    label: 'LinkedIn',
+    icon: icons.linkedin,
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="grid min-h-screen w-full place-items-center box-border px-4 py-8 md:py-12" aria-labelledby="intro-title">
+    <section class="@container w-full max-w-[46rem] text-center" data-animate-root>
+      <div class="mx-auto mb-4 aspect-square ~w-56/80 ~h-56/80 overflow-hidden rounded-full" data-animate="portrait">
+        <img
+          class="block size-full rounded-full border-4 border-site-text object-cover"
+          src="/images/drew.jpg"
+          alt="Drew Norman"
+          width="680"
+          height="680"
+        />
+      </div>
+
+      <h1 id="intro-title" class="m-0 whitespace-nowrap font-display ~text-5xl/6xl font-normal leading-none" data-animate="name">Drew Norman</h1>
+      <p class="mt-1 mb-0 whitespace-nowrap font-heading ~text-xl/2xl font-normal leading-tight" data-animate="career">Full Stack Developer</p>
+
+      <div class="mx-auto mt-8 max-w-[44rem] ~text-lg/xl leading-relaxed" data-animate="details">
+        <p class="my-3 @md:my-4">
+          I'm into
+          <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="noopener noreferrer">
+            functional programming
+          </a>
+          and
+          <a href="https://landscape.cncf.io/" target="_blank" rel="noopener noreferrer">
+            cloud-native technologies
+          </a>.
+        </p>
+        <p class="my-3 @md:my-4">
+          I like growing
+          <a href="/images/ghost-peppers.jpg" target="_blank" rel="noopener noreferrer">
+            super hots
+          </a>,
+          watching
+          <a href="https://www.imdb.com/title/tt0078748/" target="_blank" rel="noopener noreferrer">
+            scary movies
+          </a>,
+          and chilling with
+          <a href="/images/cats.jpg" target="_blank" rel="noopener noreferrer">
+            my cats
+          </a>.
+        </p>
+        <p class="my-3 @md:my-4">
+          I currently work at
+          <a href="https://foxfuelcreative.com/" target="_blank" rel="noopener noreferrer">
+            FoxFuel Creative
+          </a>.
+        </p>
+        <p class="my-3 @md:my-4">
+          Feel free to check out
+          <a href="/documents/Drew Norman - Resume.pdf" target="_blank">
+            my resume
+          </a>
+          or see my recent activity below.
+        </p>
+      </div>
+
+      <nav class="flex flex-wrap justify-center gap-x-5 gap-y-3 pt-5" aria-label="Profiles" data-animate="links">
+        {codeLinks.map((link) => (
+          <a class="grid size-10 place-items-center rounded-full text-site-text opacity-80 transition-opacity duration-200 ease-in-out hover:opacity-100 focus-visible:opacity-100" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+            <svg class="size-7 fill-current" viewBox={link.icon.viewBox} aria-hidden="true">
+              <path d={link.icon.path}></path>
+            </svg>
+          </a>
+        ))}
+      </nav>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    const timeline = gsap.timeline({ defaults: { duration: 0.6, ease: 'power2.out' } });
+
+    const profileLinks = gsap.utils.toArray('[data-animate="links"] a');
+
+    timeline
+      .from('[data-animate="portrait"]', { autoAlpha: 0, scale: 0.95, delay: 0.1 })
+      .from('[data-animate="name"]', { autoAlpha: 0, x: -15 }, '-=0.35')
+      .from('[data-animate="career"]', { autoAlpha: 0, x: 5 }, '-=0.45')
+      .from('[data-animate="details"]', { autoAlpha: 0, y: 40 }, '-=0.35')
+      .fromTo(
+        profileLinks,
+        { autoAlpha: 0, y: 32 },
+        {
+          autoAlpha: 0.8,
+          y: 0,
+          stagger: 0.1,
+          clearProps: 'opacity,visibility,transform',
+        },
+        '-=0.2',
+      );
+  }
+</script>
