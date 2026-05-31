@@ -34,16 +34,13 @@ jobs:
 
       - name: Ensure Firebase project
         run: |
-          set +e
-          add_output="$(yarn firebase projects:addfirebase "${PROJECT_ID}" --non-interactive 2>&1)"
-          add_status=$?
-          set -e
+          projects_json="$(yarn --silent firebase projects:list --json)"
 
-          printf '%s\n' "$add_output"
-
-          if [ "$add_status" -ne 0 ] && ! printf '%s\n' "$add_output" | grep -Eqi "already|exists"; then
-            exit "$add_status"
+          if PROJECTS_JSON="$projects_json" node -e "const data = JSON.parse(process.env.PROJECTS_JSON); process.exit((data.result || []).some((project) => project.projectId === process.env.PROJECT_ID) ? 0 : 1);"; then
+            exit 0
           fi
+
+          yarn firebase projects:addfirebase "${PROJECT_ID}" --non-interactive
 
       - name: Ensure production hosting site
         run: |
