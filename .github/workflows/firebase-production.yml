@@ -32,5 +32,18 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.GCP_SA_EMAIL }}
 
+      - name: Ensure production hosting site
+        run: |
+          set +e
+          create_output="$(yarn firebase hosting:sites:create "${PROJECT_ID}" --project "${PROJECT_ID}" 2>&1)"
+          create_status=$?
+          set -e
+
+          printf '%s\n' "$create_output"
+
+          if [ "$create_status" -ne 0 ] && ! printf '%s\n' "$create_output" | grep -qi "already exists"; then
+            exit "$create_status"
+          fi
+
       - name: Deploy production hosting
         run: yarn firebase deploy --only hosting --project "${PROJECT_ID}"
