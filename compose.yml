@@ -15,9 +15,7 @@ services:
       LOCAL_DEV_HTTP: "1"
       PUBLIC_SITE_URL: "http://site.personal-site.localhost:8080"
     command: >
-      sh -lc "corepack enable
-      && yarn install --frozen-lockfile
-      && yarn dev --host 0.0.0.0 --port 4321"
+      sh -lc "node_modules/.bin/astro dev --host 0.0.0.0 --port 4321"
     expose:
       - "4321"
     labels:
@@ -28,9 +26,3 @@ services:
       - traefik
     volumes:
       - .:/workspace:Z
-      - node_modules:/workspace/node_modules
-      - yarn_cache:/usr/local/share/.cache/yarn
-
-volumes:
-  node_modules:
-  yarn_cache:
