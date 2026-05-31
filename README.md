@@ -79,7 +79,18 @@ Do not add React islands for animation-only behavior. If a future component need
 
 `firebase.json` points Hosting at `dist/`, enables clean URLs, and sets cache headers for static assets and HTML.
 
-Preview deploys should happen before production deploys:
+GitHub Actions handles test and deploy automation:
+
+- `CI` runs `yarn test` on pushes and pull requests.
+- `Firebase Preview` runs `yarn test` and deploys a 7-day Firebase Hosting preview channel for pull requests opened from this repository.
+- `Firebase Production` runs `yarn test` and deploys Firebase Hosting on pushes to `master`. It can also be run manually with `workflow_dispatch`.
+
+Preview and production deploys authenticate to Google Cloud through GitHub OIDC Workload Identity Federation. The required GitHub Actions secrets are managed by the shared Terraform:
+
+- `WIF_PROVIDER`
+- `GCP_SA_EMAIL`
+
+Manual deploy commands are still available:
 
 ```sh
 yarn firebase:preview --project YOUR_GCP_PROJECT_ID
@@ -104,11 +115,13 @@ The shared budget defaults to `$10` per month with alert thresholds at 50%, 90%,
 
 ## Commits And Branches
 
-This migration branch is `feature/astro-firebase`.
-
 Use conventional commit prefixes in commit messages. Common types for this repo are `feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`, and `build:`. These are documented expectations only; there are no local hooks or CI enforcement yet.
 
-After this migration merges, create a separate redesign branch so visual redesign work stays isolated from the framework and hosting migration.
+## Repository Visibility
+
+The repository can be made public. Tracked files do not contain deployment credentials, API tokens, private keys, Terraform state, or real tfvars files. Sensitive values are either placeholders or injected through GitHub Actions secrets and Workload Identity Federation.
+
+Before changing visibility, keep generated/local files out of Git and confirm GitHub secret scanning is enabled for the public repository.
 
 ## Release Checklist
 
@@ -116,7 +129,7 @@ After this migration merges, create a separate redesign branch so visual redesig
 - Verify `yarn build` succeeds.
 - Verify `nix develop -c yarn build` succeeds.
 - Verify `podman compose -f compose.yml config` succeeds.
-- Deploy and inspect a Firebase Hosting preview channel before production.
+- Inspect a Firebase Hosting preview channel before production.
 - Check the custom domain, HTTPS, social metadata, favicon, image assets, resume PDF, and external links.
 - Confirm GSAP animations run without a React island.
 - Confirm the billing budget points at the intended billing account and project.
