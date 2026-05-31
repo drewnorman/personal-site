@@ -1,8 +1,14 @@
-version: "3.3"
+version: "3"
+
+networks:
+  local:
+  traefik:
+    external: true
 
 services:
   site:
     image: node:22-bookworm-slim
+    restart: unless-stopped
     working_dir: /workspace
     environment:
       ASTRO_TELEMETRY_DISABLED: "1"
@@ -13,23 +19,15 @@ services:
     expose:
       - "4321"
     labels:
-      traefik.enable: "true"
-      traefik.docker.network: "traefik"
-      traefik.port: "4321"
-      traefik.frontend.rule: "Host:personal-site.localhost"
-      traefik.http.routers.personal-site.rule: "Host(`personal-site.localhost`)"
-      traefik.http.routers.personal-site.entrypoints: "http"
-      traefik.http.services.personal-site.loadbalancer.server.port: "4321"
+      - traefik.enable=true
+      - traefik.http.services.personal-site-site.loadbalancer.server.port=4321
     networks:
+      - local
       - traefik
     volumes:
       - .:/workspace:Z
       - node_modules:/workspace/node_modules
       - yarn_cache:/usr/local/share/.cache/yarn
-
-networks:
-  traefik:
-    external: true
 
 volumes:
   node_modules:
