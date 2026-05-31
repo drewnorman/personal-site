@@ -4,6 +4,17 @@ resource "google_firebase_hosting_site" "production" {
   site_id  = var.firebase_hosting_site_id
 }
 
+resource "google_firebase_hosting_custom_domain" "production_apex" {
+  provider = google-beta
+
+  project               = var.project_id
+  site_id               = google_firebase_hosting_site.production.site_id
+  custom_domain         = "adre.me"
+  wait_dns_verification = false
+
+  depends_on = [cloudflare_record.production_apex]
+}
+
 locals {
   firebase_hosting_reserved_ip = "199.36.158.100"
 }
