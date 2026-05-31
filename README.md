@@ -34,12 +34,9 @@ For Podman-based development:
 podman compose -f compose.yml up
 ```
 
-The Compose service uses `node:22-bookworm-slim`, installs from `yarn.lock`, joins the external `traefik` Podman network, and exposes Astro through the global Traefik service at `http://personal-site.localhost/`.
+The Compose service uses `node:22-bookworm-slim`, installs from `yarn.lock`, joins the external `traefik` Podman network, and exposes Astro through the global Traefik service at `http://site.personal-site.localhost/`.
 
-The service carries both Traefik label styles used locally:
-
-- `traefik.frontend.rule` and `traefik.port` for older Traefik label routing.
-- `traefik.http.routers.*` and `traefik.http.services.*` for current Traefik label routing.
+The global Traefik provider applies the local default host rule, `service.project.localhost`. When this command runs from the repository root, the Compose project is `personal-site` and the service is `site`, so the default host is `site.personal-site.localhost`. The service only needs labels for enabling Traefik and pointing the load balancer at Astro's port `4321`.
 
 ## Build
 
