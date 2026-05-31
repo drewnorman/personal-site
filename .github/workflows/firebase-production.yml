@@ -32,6 +32,19 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.GCP_SA_EMAIL }}
 
+      - name: Ensure Firebase project
+        run: |
+          set +e
+          add_output="$(yarn firebase projects:addfirebase "${PROJECT_ID}" --non-interactive 2>&1)"
+          add_status=$?
+          set -e
+
+          printf '%s\n' "$add_output"
+
+          if [ "$add_status" -ne 0 ] && ! printf '%s\n' "$add_output" | grep -Eqi "already|exists"; then
+            exit "$add_status"
+          fi
+
       - name: Ensure production hosting site
         run: |
           set +e
