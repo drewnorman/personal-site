@@ -2,6 +2,8 @@ resource "google_project_service" "apis" {
   for_each = toset([
     "run.googleapis.com",
     "artifactregistry.googleapis.com",
+    "firebase.googleapis.com",
+    "firebasehosting.googleapis.com",
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
     "billingbudgets.googleapis.com",
@@ -17,6 +19,32 @@ resource "google_artifact_registry_repository" "images" {
   location      = var.region
   repository_id = var.artifact_registry_id
   format        = "DOCKER"
+
+  cleanup_policies {
+    id     = "delete-untagged-older-than-14-days"
+    action = "DELETE"
+
+    condition {
+      tag_state  = "UNTAGGED"
+      older_than = "1209600s"
+    }
+  }
+
+  cleanup_policies {
+    id     = "keep-recent-tagged-images"
+    action = "KEEP"
+
+    most_recent_versions {
+      keep_count = 5
+    }
+  }
+
+  depends_on = [google_project_service.apis]
+}
+
+resource "google_firebase_project" "default" {
+  provider = google-beta
+  project  = var.project_id
 
   depends_on = [google_project_service.apis]
 }

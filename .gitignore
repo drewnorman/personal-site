@@ -5,9 +5,10 @@
 # Dependencies
 /node_modules
 
-# Next.js
+# Astro
+/.astro/
+/dist/
 /.next/
-/out/
 
 # Production
 /build

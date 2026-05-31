@@ -1,28 +1,17 @@
-module "cloud_run" {
-  source = "../../modules/cloud_run_service"
-
-  project_id            = var.project_id
-  region                = var.region
-  service_name          = "personal-site-production"
-  image                 = "us-docker.pkg.dev/cloudrun/container/hello"
-  service_account_email = var.cloud_run_sa_email
-  domain                = "adre.me"
-  min_instances         = 0
-  max_instances         = 1
-  memory                = "512Mi"
+resource "google_firebase_hosting_site" "production" {
+  provider = google-beta
+  project  = var.project_id
+  site_id  = var.firebase_hosting_site_id
 }
 
-# DNS records for adre.me pointing to the Cloud Run domain mapping.
-# proxied = false: Google handles TLS termination for domain-mapped Cloud Run services.
-resource "cloudflare_record" "production" {
-  for_each = {
-    for record in module.cloud_run.domain_mapping_records :
-    "${record.type}_${replace(record.rrdata, ".", "_")}" => record
-  }
+locals {
+  firebase_hosting_reserved_ip = "199.36.158.100"
+}
 
+resource "cloudflare_record" "production_apex" {
   zone_id = var.cloudflare_zone_id
-  name    = each.value.name == "" ? "@" : each.value.name
-  type    = each.value.type
-  content = each.value.rrdata
+  name    = "@"
+  type    = "A"
+  content = local.firebase_hosting_reserved_ip
   proxied = false
 }
