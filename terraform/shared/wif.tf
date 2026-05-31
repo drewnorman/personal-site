@@ -56,6 +56,12 @@ resource "google_project_iam_member" "github_actions_firebase_hosting_admin" {
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+resource "google_project_iam_member" "github_actions_firebase_viewer" {
+  project = var.project_id
+  role    = "roles/firebase.viewer"
+  member  = "serviceAccount:${google_service_account.github_actions.email}"
+}
+
 resource "google_project_iam_member" "github_actions_service_usage_consumer" {
   project = var.project_id
   role    = "roles/serviceusage.serviceUsageConsumer"
