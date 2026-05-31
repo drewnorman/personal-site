@@ -12,6 +12,8 @@ services:
     working_dir: /workspace
     environment:
       ASTRO_TELEMETRY_DISABLED: "1"
+      LOCAL_DEV_HTTP: "1"
+      PUBLIC_SITE_URL: "http://site.personal-site.localhost:8080"
     command: >
       sh -lc "corepack enable
       && yarn install --frozen-lockfile

@@ -1,4 +1,4 @@
-const url = 'https://adre.me';
+const url = import.meta.env.PUBLIC_SITE_URL ?? 'https://adre.me';
 
 export default {
   name: 'Drew Norman | Full Stack Developer',
