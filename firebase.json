@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "adre-me",
     "public": "dist",
     "ignore": [
       "firebase.json",
