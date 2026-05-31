@@ -94,7 +94,7 @@ const codeLinks = [
         </p>
       </div>
 
-      <nav class="flex flex-wrap justify-center gap-x-5 gap-y-3 pt-5" aria-label="Profiles">
+      <nav class="flex flex-wrap justify-center gap-x-5 gap-y-3 pt-5" aria-label="Profiles" data-animate="links">
         {codeLinks.map((link) => (
           <a class="grid size-10 place-items-center rounded-full text-site-text opacity-80 transition-opacity duration-200 ease-in-out hover:opacity-100 focus-visible:opacity-100" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
             <svg class="size-7 fill-current" viewBox={link.icon.viewBox} aria-hidden="true">
@@ -115,10 +115,23 @@ const codeLinks = [
   if (!reduceMotion) {
     const timeline = gsap.timeline({ defaults: { duration: 0.6, ease: 'power2.out' } });
 
+    const profileLinks = gsap.utils.toArray('[data-animate="links"] a');
+
     timeline
       .from('[data-animate="portrait"]', { autoAlpha: 0, scale: 0.95, delay: 0.1 })
       .from('[data-animate="name"]', { autoAlpha: 0, x: -15 }, '-=0.35')
       .from('[data-animate="career"]', { autoAlpha: 0, x: 5 }, '-=0.45')
-      .from('[data-animate="details"]', { autoAlpha: 0, y: 40 }, '-=0.35');
+      .from('[data-animate="details"]', { autoAlpha: 0, y: 40 }, '-=0.35')
+      .fromTo(
+        profileLinks,
+        { autoAlpha: 0, y: 32 },
+        {
+          autoAlpha: 0.8,
+          y: 0,
+          stagger: 0.1,
+          clearProps: 'opacity,visibility,transform',
+        },
+        '-=0.2',
+      );
   }
 </script>
