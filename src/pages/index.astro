@@ -39,9 +39,9 @@ const codeLinks = [
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="grid min-h-screen w-full place-items-center box-border px-4 py-8 md:py-12" aria-labelledby="intro-title">
+  <main class="grid min-h-[100svh] w-full place-items-center box-border px-4 py-5 sm:py-8 md:py-12" aria-labelledby="intro-title">
     <section class="@container w-full max-w-[46rem] text-center" data-animate-root>
-      <div class="mx-auto mb-4 aspect-square ~w-56/80 ~h-56/80 overflow-hidden rounded-full" data-animate="portrait">
+      <div class="mx-auto mb-3 aspect-square size-44 overflow-hidden rounded-full sm:mb-4 sm:~w-56/80 sm:~h-56/80" data-animate="portrait">
         <img
           class="block size-full rounded-full border-4 border-site-text object-cover"
           src="/images/drew.jpg"
@@ -54,8 +54,8 @@ const codeLinks = [
       <h1 id="intro-title" class="m-0 whitespace-nowrap font-display ~text-5xl/6xl font-normal leading-none" data-animate="name">Drew Norman</h1>
       <p class="mt-1 mb-0 whitespace-nowrap font-heading ~text-xl/2xl font-normal leading-tight" data-animate="career">Full Stack Developer</p>
 
-      <div class="mx-auto mt-8 max-w-[44rem] ~text-lg/xl leading-relaxed" data-animate="details">
-        <p class="my-3 @md:my-4">
+      <div class="mx-auto mt-5 max-w-[44rem] text-base leading-snug sm:mt-8 sm:~text-lg/xl sm:leading-relaxed" data-animate="details">
+        <p class="my-2 sm:my-3 @md:my-4">
           I'm into
           <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="noopener noreferrer">
             functional programming
@@ -65,7 +65,7 @@ const codeLinks = [
             cloud-native technologies
           </a>.
         </p>
-        <p class="my-3 @md:my-4">
+        <p class="my-2 sm:my-3 @md:my-4">
           I like growing
           <a href="/images/ghost-peppers.jpg" target="_blank" rel="noopener noreferrer">
             super hots
@@ -79,13 +79,13 @@ const codeLinks = [
             my cats
           </a>.
         </p>
-        <p class="my-3 @md:my-4">
+        <p class="my-2 sm:my-3 @md:my-4">
           I currently work at
           <a href="https://foxfuelcreative.com/" target="_blank" rel="noopener noreferrer">
             FoxFuel Creative
           </a>.
         </p>
-        <p class="my-3 @md:my-4">
+        <p class="my-2 sm:my-3 @md:my-4">
           Feel free to check out
           <a href="/documents/Drew Norman - Resume.pdf" target="_blank">
             my resume
@@ -94,7 +94,7 @@ const codeLinks = [
         </p>
       </div>
 
-      <nav class="flex flex-wrap justify-center gap-x-5 gap-y-3 pt-5" aria-label="Profiles" data-animate="links">
+      <nav class="flex flex-wrap justify-center gap-x-5 gap-y-3 pt-3 sm:pt-5" aria-label="Profiles" data-animate="links">
         {codeLinks.map((link) => (
           <a class="grid size-10 place-items-center rounded-full text-site-text opacity-80 transition-opacity duration-200 ease-in-out hover:opacity-100 focus-visible:opacity-100" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
             <svg class="size-7 fill-current" viewBox={link.icon.viewBox} aria-hidden="true">
