@@ -26,3 +26,12 @@ resource "cloudflare_record" "production_apex" {
   content = local.firebase_hosting_reserved_ip
   proxied = false
 }
+
+resource "cloudflare_record" "production_firebase_ownership" {
+  zone_id = var.cloudflare_zone_id
+  name    = "adre.me"
+  type    = "TXT"
+  content = "hosting-site=${google_firebase_hosting_site.production.site_id}"
+  ttl     = 120
+  proxied = false
+}
