@@ -1,8 +1,0 @@
-node_modules
-build
-.git
-.github
-.next
-coverage
-terraform
-NOTES.md
