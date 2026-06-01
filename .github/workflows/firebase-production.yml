@@ -2,9 +2,8 @@ name: Firebase Production
 
 on:
   push:
-    branches:
-      - master
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 permissions:
   contents: read
@@ -15,6 +14,7 @@ env:
 
 jobs:
   deploy:
+    if: ${{ !contains(github.ref_name, '-rc') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

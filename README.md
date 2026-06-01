@@ -83,9 +83,12 @@ GitHub Actions handles test and deploy automation:
 
 - `CI` runs `yarn test` on pushes and pull requests.
 - `Firebase Preview` runs `yarn test` and deploys a 7-day Firebase Hosting preview channel for pull requests opened from this repository.
-- `Firebase Production` runs `yarn test` and deploys Firebase Hosting on pushes to `master`. It can also be run manually with `workflow_dispatch`.
+- `Firebase Staging` runs `yarn test` and deploys the Firebase Hosting `staging` channel when an `-rc` release tag is pushed, such as `v0.3.1-rc1`.
+- `Firebase Production` runs `yarn test` and deploys live Firebase Hosting when a non-`-rc` release tag is pushed, such as `v0.3.1`.
 
-Preview and production deploys authenticate to Google Cloud through GitHub OIDC Workload Identity Federation. The required GitHub Actions secrets are managed by the shared Terraform:
+Production deploys do not run for ordinary commits to `master`. Push a release-candidate tag for staging first, then push the final release tag for production once the staging channel has been inspected.
+
+Preview, staging, and production deploys authenticate to Google Cloud through GitHub OIDC Workload Identity Federation. The required GitHub Actions secrets are managed by the shared Terraform:
 
 - `WIF_PROVIDER`
 - `GCP_SA_EMAIL`
@@ -129,7 +132,8 @@ Before changing visibility, keep generated/local files out of Git and confirm Gi
 - Verify `yarn build` succeeds.
 - Verify `nix develop -c yarn build` succeeds.
 - Verify `podman compose -f compose.yml config` succeeds.
-- Inspect a Firebase Hosting preview channel before production.
+- Push an `-rc` tag, such as `v0.3.1-rc1`, and inspect the Firebase Hosting staging channel before production.
+- Push the final release tag, such as `v0.3.1`, to deploy production.
 - Check the custom domain, HTTPS, social metadata, favicon, image assets, resume PDF, and external links.
 - Confirm GSAP animations run without a React island.
 - Confirm the billing budget points at the intended billing account and project.
