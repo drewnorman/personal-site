@@ -4,14 +4,11 @@ This repository contains the static-first Astro site for `https://adre.me`. The 
 
 ## Requirements
 
-- Node.js 22
-- Yarn 1.22
 - Nix with flakes enabled
 - Firebase CLI authentication for deploys
-- OpenTofu for infrastructure changes
 - Podman with an external `traefik` network for containerized local development
 
-The Nix shell provides the expected Node, Yarn, Firebase CLI, and OpenTofu toolchain:
+Use the Nix shell for the expected Node, Yarn, Firebase CLI, and OpenTofu toolchain:
 
 ```sh
 nix develop
@@ -19,7 +16,7 @@ nix develop
 
 ## Local Development
 
-Install dependencies and start Astro directly:
+From the Nix shell, install dependencies and start Astro:
 
 ```sh
 yarn install
@@ -42,16 +39,16 @@ The container sets `LOCAL_DEV_HTTP=1` and `PUBLIC_SITE_URL=http://site.personal-
 
 ## Build
 
-Run the production static build:
-
-```sh
-yarn build
-```
-
-Run the same build through the Nix shell:
+Run the production static build through Nix:
 
 ```sh
 nix develop -c yarn build
+```
+
+If you are already inside `nix develop`, run:
+
+```sh
+yarn build
 ```
 
 The build runs `astro check` before `astro build`. Astro telemetry is disabled in npm scripts so local and container builds do not write user-level telemetry config.
@@ -67,13 +64,9 @@ The Tailwind setup includes:
 - Project colors and font families in `tailwind.config.cjs`.
 - Global base styles in `src/styles/global.css`.
 
-Keep page-level CSS in Tailwind utilities unless a component needs a genuinely custom rule that Tailwind cannot express cleanly.
-
 ## Animation
 
 Use GSAP first for Astro-native animation. Prefer client-side Astro scripts for page-load, scroll, timeline, and element animation.
-
-Do not add React islands for animation-only behavior. If a future component needs React state or Motion-style component animation, add Astro's React integration at that point. If Motion is needed, prefer the current package style: `motion` with imports from `motion/react`.
 
 ## Firebase Hosting
 
@@ -120,26 +113,3 @@ tofu -chdir=terraform/environments/staging validate
 ```
 
 The shared budget defaults to `$10` per month with alert thresholds at 50%, 90%, and 100%. Keep this budget low unless the site gains an explicit paid dependency. Avoid always-on VMs, managed databases, clusters, and load balancers for this static site.
-
-## Commits And Branches
-
-Use conventional commit prefixes in commit messages. Common types for this repo are `feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`, and `build:`. These are documented expectations only; there are no local hooks or CI enforcement yet.
-
-## Repository Visibility
-
-The repository can be made public. Tracked files do not contain deployment credentials, API tokens, private keys, Terraform state, or real tfvars files. Sensitive values are either placeholders or injected through GitHub Actions secrets and Workload Identity Federation.
-
-Before changing visibility, keep generated/local files out of Git and confirm GitHub secret scanning is enabled for the public repository.
-
-## Release Checklist
-
-- Verify the Astro dev server renders the landing page.
-- Verify `yarn build` succeeds.
-- Verify `nix develop -c yarn build` succeeds.
-- Verify `podman compose -f compose.yml config` succeeds.
-- Confirm the Release Please PR proposes the expected next version, changelog, and `package.json` version.
-- Push an `-rc` tag matching the proposed version, such as `v0.3.1-rc1`, and inspect the Firebase Hosting staging channel before production.
-- Merge the Release Please PR to create the final release tag, such as `v0.3.1`, and deploy production.
-- Check the custom domain, HTTPS, social metadata, favicon, image assets, resume PDF, and external links.
-- Confirm GSAP animations run without a React island.
-- Confirm the billing budget points at the intended billing account and project.
