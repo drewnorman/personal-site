@@ -20,12 +20,10 @@ echo "Granting project-level roles..."
 for role in \
   roles/serviceusage.serviceUsageAdmin \
   roles/serviceusage.serviceUsageConsumer \
-  roles/artifactregistry.admin \
   roles/firebase.admin \
   roles/iam.serviceAccountAdmin \
   roles/iam.workloadIdentityPoolAdmin \
   roles/resourcemanager.projectIamAdmin \
-  roles/run.admin \
   roles/browser
 do
   echo "  $role"

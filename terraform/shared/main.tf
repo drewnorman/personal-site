@@ -1,7 +1,5 @@
 resource "google_project_service" "apis" {
   for_each = toset([
-    "run.googleapis.com",
-    "artifactregistry.googleapis.com",
     "firebase.googleapis.com",
     "firebasehosting.googleapis.com",
     "iam.googleapis.com",
@@ -14,34 +12,6 @@ resource "google_project_service" "apis" {
   disable_on_destroy = false
 }
 
-resource "google_artifact_registry_repository" "images" {
-  project       = var.project_id
-  location      = var.region
-  repository_id = var.artifact_registry_id
-  format        = "DOCKER"
-
-  cleanup_policies {
-    id     = "delete-untagged-older-than-14-days"
-    action = "DELETE"
-
-    condition {
-      tag_state  = "UNTAGGED"
-      older_than = "1209600s"
-    }
-  }
-
-  cleanup_policies {
-    id     = "keep-recent-tagged-images"
-    action = "KEEP"
-
-    most_recent_versions {
-      keep_count = 5
-    }
-  }
-
-  depends_on = [google_project_service.apis]
-}
-
 resource "google_firebase_project" "default" {
   provider = google-beta
   project  = var.project_id
@@ -49,26 +19,8 @@ resource "google_firebase_project" "default" {
   depends_on = [google_project_service.apis]
 }
 
-resource "google_service_account" "cloud_run" {
-  project      = var.project_id
-  account_id   = "cloud-run-sa"
-  display_name = "Cloud Run Service Account"
-}
-
-resource "google_artifact_registry_repository_iam_member" "cloud_run_reader" {
-  project    = var.project_id
-  location   = var.region
-  repository = google_artifact_registry_repository.images.name
-  role       = "roles/artifactregistry.reader"
-  member     = "serviceAccount:${google_service_account.cloud_run.email}"
-}
-
 data "google_project" "project" {
   project_id = var.project_id
-}
-
-locals {
-  cloud_build_sa = "${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
 # Keep the default Compute Engine service account from retaining the legacy
@@ -79,26 +31,6 @@ resource "google_project_iam_binding" "no_project_editors" {
   project = var.project_id
   role    = "roles/editor"
   members = []
-}
-
-resource "google_artifact_registry_repository_iam_member" "cloud_build_writer" {
-  project    = var.project_id
-  location   = var.region
-  repository = google_artifact_registry_repository.images.name
-  role       = "roles/artifactregistry.writer"
-  member     = "serviceAccount:${local.cloud_build_sa}"
-}
-
-resource "google_project_iam_member" "cloud_build_run_admin" {
-  project = var.project_id
-  role    = "roles/run.admin"
-  member  = "serviceAccount:${local.cloud_build_sa}"
-}
-
-resource "google_service_account_iam_member" "cloud_build_act_as_run_sa" {
-  service_account_id = google_service_account.cloud_run.name
-  role               = "roles/iam.serviceAccountUser"
-  member             = "serviceAccount:${local.cloud_build_sa}"
 }
 
 # ── Budget alert ─────────────────────────────────────────────────────────────

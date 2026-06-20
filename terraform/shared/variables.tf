@@ -7,11 +7,6 @@ variable "region" {
   default = "us-central1"
 }
 
-variable "artifact_registry_id" {
-  type    = string
-  default = "personal-site"
-}
-
 variable "billing_account_id" {
   type        = string
   description = "GCP billing account ID (format: XXXXXX-XXXXXX-XXXXXX). Run: gcloud billing accounts list"
