@@ -104,12 +104,19 @@ Use Firebase Hosting rewrites only when a future feature needs dynamic routing. 
 
 Terraform/OpenTofu manages project setup, enabled APIs, IAM, Firebase resources where practical, Cloudflare DNS records, and billing budget guardrails.
 
+Local infrastructure runs should authenticate as the Terraform service account, `terraform@adre-me.iam.gserviceaccount.com`. If the account ever needs to be bootstrapped again, `scripts/setup-tofu-sa.sh` creates or reuses that service account and grants the project and billing roles required by the Terraform stacks. Do not create a separate `tofu-sa` account for this repository.
+
 Validate infrastructure changes with:
 
 ```sh
+tofu -chdir=terraform/shared fmt
+tofu -chdir=terraform/environments/production fmt
+tofu -chdir=terraform/environments/staging fmt
 tofu -chdir=terraform/shared validate
 tofu -chdir=terraform/environments/production validate
 tofu -chdir=terraform/environments/staging validate
 ```
+
+The shared stack owns the project-level IAM hygiene baseline. It declares an empty authoritative `roles/editor` binding so the legacy default Compute Engine service account, `${PROJECT_NUMBER}-compute@developer.gserviceaccount.com`, does not retain broad Editor access. On the first migration plan, expect Terraform/OpenTofu to remove the existing `roles/editor` member for that default service account. Apply only if the plan removes that legacy default-service-account Editor grant and does not remove any still-required human or workload principal.
 
 The shared budget defaults to `$10` per month with alert thresholds at 50%, 90%, and 100%. Keep this budget low unless the site gains an explicit paid dependency. Avoid always-on VMs, managed databases, clusters, and load balancers for this static site.

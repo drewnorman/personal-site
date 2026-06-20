@@ -71,6 +71,16 @@ locals {
   cloud_build_sa = "${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
+# Keep the default Compute Engine service account from retaining the legacy
+# project Editor grant. This is intentionally authoritative for roles/editor;
+# only apply when the plan shows the expected removal and no human or workload
+# principal should keep Editor.
+resource "google_project_iam_binding" "no_project_editors" {
+  project = var.project_id
+  role    = "roles/editor"
+  members = []
+}
+
 resource "google_artifact_registry_repository_iam_member" "cloud_build_writer" {
   project    = var.project_id
   location   = var.region
