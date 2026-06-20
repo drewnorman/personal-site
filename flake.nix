@@ -22,6 +22,7 @@
               pkgs.yarn
               pkgs.firebase-tools
               pkgs.opentofu
+              pkgs.just
             ];
           };
         });
