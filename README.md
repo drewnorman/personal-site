@@ -53,6 +53,16 @@ yarn build
 
 The build runs `astro check` before `astro build`. Astro telemetry is disabled in npm scripts so local and container builds do not write user-level telemetry config.
 
+## Resume
+
+The public resume page at `/resume` is the editable source for the downloadable PDF. After changing `src/pages/resume.astro` or its stylesheet, regenerate the committed PDF:
+
+```sh
+yarn resume:pdf
+```
+
+The command builds the site and renders `/resume` with headless Chromium. It updates `public/documents/resume.pdf` and the legacy `public/documents/Drew Norman - Resume.pdf` link. Chromium is included in the Nix development shell on Linux; elsewhere, install Chromium or set `CHROMIUM_BIN` to a compatible browser executable. Inspect both PDF pages before committing.
+
 ## Styling
 
 Use Tailwind CSS for page styling.

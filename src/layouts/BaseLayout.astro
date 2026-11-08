@@ -5,9 +5,12 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  bodyClass?: string;
+  loadFonts?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, bodyClass, loadFonts = true } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, site.url).toString();
 ---
 
 <!doctype html>
@@ -17,9 +20,10 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={site.url} />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={site.image} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -28,11 +32,15 @@ const { title, description } = Astro.props;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={site.image} />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href={site.fontUrls.base} rel="stylesheet" />
+    {loadFonts && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href={site.fontUrls.base} rel="stylesheet" />
+      </>
+    )}
   </head>
-  <body>
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>
