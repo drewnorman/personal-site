@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/resume.css';
+
+const pdfUrl = '/documents/resume.pdf';
+const title = 'Resume | Drew Norman';
+const description = 'Drew Norman is a senior full stack developer with experience leading web application development, integrations, and delivery across client projects.';
+---
+
+<BaseLayout title={title} description={description} bodyClass="resume-body" loadFonts={false}>
+  <div class="resume-screen-actions" aria-label="Resume actions">
+    <a href="/">← Back to adre.me</a>
+    <a class="resume-download" href={pdfUrl} download="Drew Norman - Resume.pdf">Download PDF</a>
+  </div>
+
+  <main class="resume-sheet" aria-labelledby="resume-name">
+    <header class="resume-header">
+      <div>
+        <h1 id="resume-name">Drew Norman</h1>
+        <p class="resume-headline">Senior Full Stack Developer</p>
+      </div>
+      <address class="resume-contact">
+        <a href="mailto:drew@adre.me">drew@adre.me</a>
+        <a href="https://adre.me/">adre.me</a>
+        <a href="https://www.linkedin.com/in/drew-norman-dev/">linkedin.com/in/drew-norman-dev</a>
+      </address>
+    </header>
+
+    <section class="resume-section resume-summary" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Profile</h2>
+      <p>
+        Senior full stack developer with more than nine years of experience building and operating web applications.
+        Lead projects from technical design through implementation and release, with strengths in API integration,
+        interactive interfaces, maintainable architecture, and reliable delivery. Experienced in guiding developers
+        and translating complex client needs into practical products.
+      </p>
+    </section>
+
+    <section class="resume-section" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Professional Experience</h2>
+
+      <div class="resume-company">
+        <h3>FoxFuel Creative <span>· Remote</span></h3>
+
+        <div class="resume-role">
+          <div class="resume-role-heading">
+            <h4>Senior Full Stack Developer</h4>
+            <p><time datetime="2025-02">Feb 2025</time> – Present</p>
+          </div>
+          <ul>
+            <li>Lead implementation of client web products across design, content, application logic, integrations, and deployment, making technical decisions that keep features maintainable as requirements evolve.</li>
+            <li>Build reusable interface and content systems for responsive sites, giving editors flexible controls while keeping presentation consistent across pages and devices.</li>
+            <li>Develop data-rich experiences, including interactive property maps, provider directories, reviews, and reports, with careful handling of missing data and changing viewport or interaction states.</li>
+            <li>Design integrations between external services and internal data flows, including import workflows, API-backed listings, and document generation.</li>
+            <li>Introduce repeatable local setups, content seeding, build checks, and staged deployment recipes across client repositories to make development and releases easier to reproduce.</li>
+            <li>Work with designers and stakeholders to refine responsive behavior and accessibility, review implementation details, and resolve production issues through release.</li>
+          </ul>
+        </div>
+
+        <div class="resume-role">
+          <div class="resume-role-heading">
+            <h4>Full Stack Developer</h4>
+            <p><time datetime="2020-02">Feb 2020</time> – <time datetime="2025-02">Feb 2025</time></p>
+          </div>
+          <ul>
+            <li>Built and maintained client web applications and REST APIs in PHP and JavaScript, spanning campaign tools, interactive reports, content platforms, and custom business workflows.</li>
+            <li>Integrated Google, Shopify, Stripe, and Instagram services, and implemented SAML single sign-on across PHP applications.</li>
+            <li>Created data visualizations, automated data maintenance jobs, and document-generation tools, including PDFs assembled from user-submitted information.</li>
+            <li>Introduced JavaScript and PHP unit-test scaffolding, improved Git workflows, and supported staging, releases, and production troubleshooting across multiple applications.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="resume-page-two-header" aria-hidden="true">
+      <span>Drew Norman</span>
+      <span>Senior Full Stack Developer</span>
+    </div>
+
+    <section class="resume-section resume-selected-work" aria-labelledby="selected-work-heading">
+      <h2 id="selected-work-heading">Selected Engineering Work</h2>
+      <div class="resume-work-example">
+        <h3>Healthcare data integration</h3>
+        <p>Built provider import and specialty mapping jobs around an external directory API, then connected the resulting data to web listings and generated facility and specialty PDF guides from managed content.</p>
+      </div>
+      <div class="resume-work-example">
+        <h3>Interactive property exploration</h3>
+        <p>Developed responsive property-map interactions across city selection, detail panels, animation, and linked property lists; refined resizing, touch and trackpad behavior, and missing-image states.</p>
+      </div>
+      <div class="resume-work-example">
+        <h3>Reusable content and media systems</h3>
+        <p>Created editor components and shared asset-rendering patterns across client sites, supporting flexible page composition and responsive images with modern formats and fallbacks.</p>
+      </div>
+    </section>
+
+    <section class="resume-section resume-earlier-experience" aria-labelledby="earlier-heading">
+      <h2 id="earlier-heading">Earlier Experience</h2>
+      <div class="resume-company">
+        <h3>Center for Innovative Teaching and Learning, Western Kentucky University <span>· Bowling Green, KY</span></h3>
+        <div class="resume-role">
+          <div class="resume-role-heading">
+            <h4>Full Stack Developer</h4>
+            <p><time datetime="2017-02">Feb 2017</time> – <time datetime="2020-01">Jan 2020</time></p>
+          </div>
+          <ul>
+            <li>Designed and maintained a customizable PHP application framework used to deliver web tools for university programs.</li>
+            <li>Built authorized APIs, interactive reports, and dynamic PDF forms and certificates from multiple institutional datasets.</li>
+            <li>Trained and supervised student developers, led code reviews, and established conventions and testing practices for the team.</li>
+            <li>Collaborated on classroom technology, including automated whiteboard capture and a browser extension connecting transcription hardware to a web application.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="resume-section resume-skills" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Technical Strengths</h2>
+      <dl>
+        <div><dt>Applications</dt><dd>TypeScript, JavaScript, PHP, React, Vue, Node.js, Laravel, WordPress</dd></div>
+        <div><dt>Interfaces</dt><dd>Responsive HTML/CSS, accessibility, Tailwind CSS, Sass, GSAP, data visualization</dd></div>
+        <div><dt>Data &amp; APIs</dt><dd>REST APIs, third-party integrations, MySQL, Redis, SAML, webhooks</dd></div>
+        <div><dt>Delivery</dt><dd>Git, CI/CD, automated testing, Docker/Podman, Nix, Google Cloud, Azure</dd></div>
+      </dl>
+    </section>
+
+    <section class="resume-section resume-education" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <p><strong>BS, Computer Science</strong> · Western Kentucky University · Honors College · 2017</p>
+    </section>
+  </main>
+</BaseLayout>

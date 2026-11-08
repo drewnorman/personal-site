@@ -23,7 +23,7 @@
               pkgs.firebase-tools
               pkgs.opentofu
               pkgs.just
-            ];
+            ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [ pkgs.chromium ];
           };
         });
     };
